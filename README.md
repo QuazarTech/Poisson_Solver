@@ -2,7 +2,7 @@
 
 This project contains the files which solve the Poisson equation:
 
-<p align="center"><img src="https://rawgit.com/QuazarTech/Poisson_Solver/NONE/.svgs/d081cfc402036f5c2f39b090d8461018.svg?invert_in_darkmode" align=middle width=169.36425pt height=36.953894999999996pt/></p>
+<p align="center"><img src="https://rawgit.com/QuazarTech/Poisson_Solver/master/.svgs/d081cfc402036f5c2f39b090d8461018.svg?invert_in_darkmode" align=middle width=169.36425pt height=36.953894999999996pt/></p>
 
 ## Dependencies:
 
@@ -14,7 +14,7 @@ Once [ArrayFire](https://github.com/arrayfire/arrayfire) is installed successful
 
 ## Usage:
 
-The function `fft_poisson` assumes that in the density array, x varies along axis 0, y varies along axis 1, z varies along axis 2. Additionally, we consider cell centered formulation to be used throughout. Hence the density array needs to be passed to the function following these conventions:
+The function `fft_poisson` assumes that in the density array, `x` varies along axis 0, `y` varies along axis 1, `z` varies along axis 2. Additionally, we consider cell centered formulation to be used throughout. Hence the density array needs to be passed to the function following these conventions:
 ```python
 from fft_poisson_3d import fft_poisson
 Ex, Ey, Ez = fft_poisson(rho, dx, dy, dz)
