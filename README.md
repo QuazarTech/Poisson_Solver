@@ -20,12 +20,19 @@ The solver makes use of [ArrayFire](https://github.com/arrayfire/arrayfire) and 
 
 Once [ArrayFire](https://github.com/arrayfire/arrayfire) is installed successfully, all other dependencies can be installed using `pip install -r requirements.txt`
 
+## Installation:
+
+- First build [ArrayFire](https://github.com/arrayfire/arrayfire) from source. Suggested installation folder: `${HOME}/arrayfire`
+- This code needs Python3 to run. Suggested install : [Anaconda for Python3](https://www.continuum.io/downloads)
+- After installing Anaconda, type `which python` in the terminal. Output should show that python from Anaconda is being used.
+- Next, inside the Poisson_Solver folder, use: `pip install -r requirements.txt` to install required Python3 libraries.
+
 ## Usage:
 
 The function `fft_poisson` assumes that in the density array, `x` varies along axis 0, `y` varies along axis 1, `z` varies along axis 2. Additionally, we consider cell centered formulation to be used throughout. Hence the density array needs to be passed to the function following these conventions:
 ```python
 from fft_poisson_3d import fft_poisson
-Ex, Ey, Ez = fft_poisson(rho, dx, dy, dz)
+potential, Ex, Ey, Ez = fft_poisson(rho, dx, dy, dz)
 ```
 ## Testing:
 
