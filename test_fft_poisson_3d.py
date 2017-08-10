@@ -14,6 +14,9 @@ def test_fft_poisson():
     solution as given by the FFT solver and the analytical
     solution correspond well with each other.
     """
+    
+    af.set_backend('cpu')
+    
     x_start = 0
     y_start = 0
     z_start = 0
@@ -25,6 +28,10 @@ def test_fft_poisson():
     N_x = np.random.randint(16, 32)
     N_y = np.random.randint(16, 32)
     N_z = np.random.randint(16, 32)
+    
+    print ("N_x", N_x)
+    print ("N_y", N_y)
+    print ("N_z", N_z)
 
     dx = (x_end - x_start) / N_x
     dy = (y_end - y_start) / N_y
@@ -52,13 +59,19 @@ def test_fft_poisson():
     Ez_analytic = -(6 * np.pi) / (56 * np.pi**2) * \
                   af.cos(2 * np.pi * x + 4 * np.pi * y + 6 * np.pi * z)
 
-    Ex_numerical, Ey_numerical, Ez_numerical = fft_poisson(rho, dx, dy, dz)
+    potential, Ex_numerical, Ey_numerical, Ez_numerical = fft_poisson(rho, dx, dy, dz)
 
     # Checking that the L1 norm of error is at machine precision:
     Ex_err = af.sum(af.abs(Ex_numerical - Ex_analytic)) / Ex_analytic.elements()
     Ey_err = af.sum(af.abs(Ey_numerical - Ey_analytic)) / Ey_analytic.elements()
     Ez_err = af.sum(af.abs(Ez_numerical - Ez_analytic)) / Ez_analytic.elements()
+    
+    print ("Ex_err : ",Ex_err)
+    print ("Ey_err : ",Ey_err)
+    print ("Ez_err : ",Ez_err)
 
     assert(Ex_err < 1e-14)
     assert(Ey_err < 1e-14)
     assert(Ez_err < 1e-14)
+    
+test_fft_poisson()
