@@ -23,9 +23,9 @@ def test_fft_poisson():
     y_end = np.random.randint(1, 4)
     z_end = np.random.randint(1, 4)
 
-    N_x = np.random.choice(2 * np.arange(20, 40))
-    N_y = np.random.choice(2 * np.arange(20, 40))
-    N_z = np.random.choice(2 * np.arange(20, 40))
+    N_x = np.random.choice(2 ** np.arange(5, 10))
+    N_y = np.random.choice(2 ** np.arange(5, 10))
+    N_z = np.random.choice(2 ** np.arange(5, 10))
     
     dx = (x_end - x_start) / N_x
     dy = (y_end - y_start) / N_y
