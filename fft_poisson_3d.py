@@ -34,6 +34,8 @@ def fft_poisson(rho, dx, dy, dz):
 
     potential_hat = rho_hat / (4 * np.pi**2 * (k_x**2 + k_y**2 + k_z**2))
 
+    # At the zeroth index, k_x = K_y = k_z = 0
+    # Setting potential_hat's zeroth indices manually to avoid ZeroDivisionError
     potential_hat[0, 0, 0] = 0
 
     Ex_hat = -1j * 2 * np.pi * k_x * potential_hat
@@ -43,5 +45,7 @@ def fft_poisson(rho, dx, dy, dz):
     Ex = af.ifft3(Ex_hat)
     Ey = af.ifft3(Ey_hat)
     Ez = af.ifft3(Ez_hat)
+    
+    potential = af.ifft3(potential_hat)
 
-    return(Ex, Ey, Ez)
+    return(potential, Ex, Ey, Ez)
