@@ -34,8 +34,8 @@ def fft_poisson(rho, dx, dy, dz):
 
     potential_hat = rho_hat / (4 * np.pi**2 * (k_x**2 + k_y**2 + k_z**2))
 
-    # At the zeroth index, k_x = K_y = k_z = 0
-    # Setting potential_hat's zeroth indices manually to avoid ZeroDivisionError
+    # At the [0, 0, 0] index, k_x = k_y = k_z = 0
+    # Manually assigning to zero(from inf) 
     potential_hat[0, 0, 0] = 0
 
     Ex_hat = -1j * 2 * np.pi * k_x * potential_hat

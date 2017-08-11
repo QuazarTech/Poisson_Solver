@@ -15,24 +15,18 @@ def test_fft_poisson():
     solution correspond well with each other.
     """
     
-    af.set_backend('cpu')
+    x_start = -np.random.randint(1, 4)
+    y_start = -np.random.randint(1, 4)
+    z_start = -np.random.randint(1, 4)
+
+    x_end = np.random.randint(1, 4)
+    y_end = np.random.randint(1, 4)
+    z_end = np.random.randint(1, 4)
+
+    N_x = np.random.choice(2 * np.arange(20, 40))
+    N_y = np.random.choice(2 * np.arange(20, 40))
+    N_z = np.random.choice(2 * np.arange(20, 40))
     
-    x_start = 0
-    y_start = 0
-    z_start = 0
-
-    x_end = 1
-    y_end = 2
-    z_end = 3
-
-    N_x = np.random.randint(16, 32)
-    N_y = np.random.randint(16, 32)
-    N_z = np.random.randint(16, 32)
-    
-    print ("N_x", N_x)
-    print ("N_y", N_y)
-    print ("N_z", N_z)
-
     dx = (x_end - x_start) / N_x
     dy = (y_end - y_start) / N_y
     dz = (z_end - z_start) / N_z
@@ -66,12 +60,6 @@ def test_fft_poisson():
     Ey_err = af.sum(af.abs(Ey_numerical - Ey_analytic)) / Ey_analytic.elements()
     Ez_err = af.sum(af.abs(Ez_numerical - Ez_analytic)) / Ez_analytic.elements()
     
-    print ("Ex_err : ",Ex_err)
-    print ("Ey_err : ",Ey_err)
-    print ("Ez_err : ",Ez_err)
-
     assert(Ex_err < 1e-14)
     assert(Ey_err < 1e-14)
     assert(Ez_err < 1e-14)
-    
-test_fft_poisson()
